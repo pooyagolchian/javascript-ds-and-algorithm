@@ -4,20 +4,33 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Queue</title>
+    <title>Priority Queue</title>
   </head>
   <body>
-    <h1>Queue</h1>
+    <h1>Priority Queue</h1>
     <h3>Open console and see the result!</h3>
 
     <script>
-      function Queue() {
+      function PriorityQueue() {
         let collection = [];
-        this.print = function () {
+
+        this.printCollection = function () {
           console.log(collection);
         };
         this.enqueue = function (element) {
-          collection.push(element);
+          let added = false;
+          if (this.isEmpty) {
+            collection.push(element);
+          } else {
+            for (let i = 0; i < collection.length; i++) {
+              if (element[1] < collection[i][1]) {
+                collection.splice(i, 0, element);
+                added = true;
+                break;
+              }
+              if (!added) collection.push(element);
+            }
+          }
         };
 
         this.dequeue = function (element) {
@@ -37,19 +50,16 @@
         };
       }
 
-      var q = new Queue();
-      q.enqueue("a");
-      q.enqueue("b");
-      q.enqueue("c");
-      q.enqueue("d");
-      q.enqueue("e");
-      q.print();
-      q.dequeue();
-      console.log(q.front());
-      console.log(q.end());
-      console.log(q.size());
-      console.log(q.isEmpty());
-      q.print();
+      const pq = new PriorityQueue();
+      pq.printCollection();
+      pq.enqueue(["TypeScript", 1]);
+      pq.enqueue(["React", 2]);
+      pq.enqueue(["JavaScript", 2]);
+      pq.enqueue(["HTML", 4]);
+      pq.printCollection();
+      pq.dequeue();
+      console.log(pq.front());
+      pq.printCollection();
     </script>
   </body>
 </html>
