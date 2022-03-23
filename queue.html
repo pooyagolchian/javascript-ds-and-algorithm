@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Queue</title>
+  </head>
+  <body>
+    <h1>Queue</h1>
+    <h3>Open console and see the result!</h3>
+
+    <script>
+      console.clear();
+      function Queue() {
+        let collection = [];
+        this.print = function () {
+          console.log(collection);
+        };
+        this.enqueue = function (element) {
+          collection.push(element);
+        };
+
+        this.dequeue = function (element) {
+          return collection.shift();
+        };
+        this.front = function () {
+          return collection[0];
+        };
+        this.end = function () {
+          return collection[collection.length - 1];
+        };
+        this.isEmpty = function () {
+          return collection.length === 0;
+        };
+        this.size = function () {
+          return collection.length;
+        };
+      }
+
+      var q = new Queue();
+      q.enqueue("a");
+      q.enqueue("b");
+      q.enqueue("c");
+      q.enqueue("d");
+      q.enqueue("e");
+      q.print();
+      q.dequeue();
+      console.log(q.front());
+      console.log(q.end());
+      console.log(q.size());
+      console.log(q.isEmpty());
+      q.print();
+    </script>
+  </body>
+</html>
